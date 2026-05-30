@@ -4,17 +4,6 @@
 
 ### AI-powered skin & hair analysis with custom-trained ML models, personalized routines, progress tracking, and real-time environmental guidance
 
-![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat&logo=python&logoColor=white)
-![React](https://img.shields.io/badge/React-18-61DAFB?style=flat&logo=react&logoColor=black)
-![Flask](https://img.shields.io/badge/Flask-3.0-000000?style=flat&logo=flask&logoColor=white)
-![Go](https://img.shields.io/badge/Go-1.22-00ADD8?style=flat&logo=go&logoColor=white)
-![Firebase](https://img.shields.io/badge/Firebase-Auth%20%26%20FCM-FFCA28?style=flat&logo=firebase&logoColor=black)
-![License](https://img.shields.io/badge/License-MIT-green?style=flat)
-
-</div>
-
----
-
 ## 📌 What is SkinMax?
 
 SkinMax is a personalized skin and hair analysis web application that uses computer vision and machine learning to analyze a user's facial features and deliver tailored skincare routines, lifestyle advice, color recommendations, and dynamically updated environmental skincare guidance — all without relying on any external AI API.
@@ -236,5 +225,5 @@ npm run dev
 
 
 <div align="center">
-Built with ❤️ for [CCS] Intra-Society Hackathon
+Built with ❤️ for CCS's Intra-Society Hackathon
 </div>
