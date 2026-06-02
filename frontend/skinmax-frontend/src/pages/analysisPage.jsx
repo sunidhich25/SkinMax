@@ -1,0 +1,153 @@
+import "../styles/analysisPage.css";
+import modelImage from "../assets/model.jpg";
+import { useNavigate } from "react-router-dom";
+
+export default function AnalysisPage() {
+  const navigate = useNavigate();
+  return (
+    <div className="analysis-page">
+      <header className="navbar">
+        <div className="logo">SkinMax</div>
+        <nav>
+          <button
+          className="nav-link"
+          onClick={() => navigate("/login")}
+        >
+          Analysis
+        </button>
+          <button className="nav-link" onClick={() => navigate("/login")}>
+            Routines
+          </button>
+          <button className="nav-link" onClick={() => navigate("/login")}>
+            AI Chat
+          </button>
+          <button className="nav-link" onClick={() => navigate("/community")}>
+            Community
+          </button>
+        </nav>
+        <div className="actions">
+          <button className="login-btn"
+          onClick={() => navigate("/login")}
+          >
+            Log In</button>
+          <button className="signup-btn"
+          onClick={() => navigate("/login")}
+          >
+            Sign Up</button>
+        </div>
+      </header>
+
+      <section className="hero">
+        <div className="blob blob1"></div>
+        <div className="blob blob2"></div>
+
+        <span className="badge">PIONEERING COMPUTER VISION</span>
+
+        <h1>Discover Your Best Skin<br/>with AI</h1>
+
+        <p>
+          Advanced facial analysis powered by computer vision and artificial
+          intelligence. Personalized clinical precision in the comfort of your own home.
+        </p>
+
+        <div className="hero-buttons">
+          <button className="primary-btn" 
+          onClick={() => navigate("/login")}
+          >
+            Start Your Analysis</button>
+          <button className="secondary-btn"
+          onClick={() => navigate("/login")}
+          >
+            View Sample Report</button>
+        </div>
+
+        <div className="hero-card">
+          <img src={modelImage} alt="AI Analysis" />
+
+          <div className="floating-card hydration">
+            <h4>Hydration Level</h4>
+            <div className="bar"><div className="fill"></div></div>
+            <span>82% Optimal</span>
+          </div>
+
+          <div className="floating-card recommendation">
+            <h4>AI Recommendation</h4>
+            <p>Switch to a ceramide-based cleanser for nightly repair.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="features">
+        <h2>Precision Met with Ritual</h2>
+        <p>Beyond surface level. We analyze multiple markers to curate your routine.</p>
+
+        <div className="bento-grid">
+          <div className="card large">
+            <h3>Precision Analysis</h3>
+            <p>AI-powered skin diagnostics with detailed insights.</p>
+          </div>
+
+          <div className="card tall">
+            <h3>Progress Tracking</h3>
+            <p>Track improvements across weeks and months.</p>
+          </div>
+
+          <div className="card">
+            <h3>AI Chat</h3>
+            <p>Ask questions about your routine in real time.</p>
+          </div>
+
+          <div className="card wide">
+            <h3>Custom Routines</h3>
+            <p>Morning and evening protocols tailored for your skin.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="flow">
+        <h2>The Ritual Flow</h2>
+
+        <div className="steps">
+          <div className="step"><span>01</span><h3>Snap a Selfie</h3></div>
+          <div className="step"><span>02</span><h3>AI Processing</h3></div>
+          <div className="step"><span>03</span><h3>Daily Protocol</h3></div>
+        </div>
+      </section>
+
+      <section className="testimonials">
+        <h2>Voices of Clarity</h2>
+
+        <div className="testimonial-grid">
+          <div className="testimonial">
+            <p>"The AI analysis was startlingly accurate."</p>
+            <h4>Elena R.</h4>
+          </div>
+
+          <div className="testimonial">
+            <p>"My routine is now minimal and effective."</p>
+            <h4>Marcus T.</h4>
+          </div>
+        </div>
+      </section>
+
+      <section className="cta">
+        <h2>Ready for Your Private Consultation?</h2>
+        <p>Start your first scan today and experience the future of skincare.</p>
+        <button className="primary-btn">Start Your Analysis</button>
+      </section>
+
+      <footer className="footer">
+        <div>
+          <h3>SkinMax</h3>
+          <p>© 2026 SkinMax</p>
+        </div>
+
+        <div className="footer-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Contact</a>
+        </div>
+      </footer>
+    </div>
+  );
+}
