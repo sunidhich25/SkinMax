@@ -39,12 +39,12 @@ function App() {
 
         <Route
           path="/weather"
-          element={<h1>Weather-Based Care (Coming Soon)</h1>}
+          element={<h1>Weather-Based Care</h1>}
         />
 
         <Route
           path="/dermatologists"
-          element={<h1>Find Dermatologists (Coming Soon)</h1>}
+          element={<h1>Find Dermatologists</h1>}
         />
 
       </Routes>
