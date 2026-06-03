@@ -47,6 +47,14 @@ export default function Sidebar() {
           Analysis
         </NavLink>
 
+        <NavLink to="/weather">
+          Weather-Based Care
+        </NavLink>
+
+        <NavLink to="/dermatologists">
+          Find Dermatologists
+        </NavLink>
+
         <a href="#">Progress</a>
 
         <a href="#">Routines</a>
@@ -65,6 +73,7 @@ export default function Sidebar() {
 
       <div className="bottom-links">
         <a href="#">Settings</a>
+
         <a href="#">Support</a>
 
         <button

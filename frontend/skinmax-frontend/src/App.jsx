@@ -37,6 +37,16 @@ function App() {
           element={<AnalysisPage />}
         />
 
+        <Route
+          path="/weather"
+          element={<h1>Weather-Based Care (Coming Soon)</h1>}
+        />
+
+        <Route
+          path="/dermatologists"
+          element={<h1>Find Dermatologists (Coming Soon)</h1>}
+        />
+
       </Routes>
     </BrowserRouter>
   );
