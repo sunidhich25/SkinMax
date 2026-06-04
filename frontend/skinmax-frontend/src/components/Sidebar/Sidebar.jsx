@@ -47,21 +47,31 @@ export default function Sidebar() {
           Analysis
         </NavLink>
 
-        <NavLink to="/weather">
-          Weather-Based Care
-        </NavLink>
+        {/* <NavLink to="/weather">
+          Weather Based Care
+        </NavLink> */}
 
         <NavLink to="/dermatologists">
-          Find Dermatologists
+          Dermatologists
         </NavLink>
 
-        <a href="#">Progress</a>
+        <div className="nav-divider"></div>
 
-        <a href="#">Routines</a>
+        <a href="#">
+          Progress
+        </a>
 
-        <a href="#">AI Chat</a>
+        <a href="#">
+          Routines
+        </a>
 
-        <a href="#">Community</a>
+        <a href="#">
+          AI Chat
+        </a>
+
+        <a href="#">
+          Community
+        </a>
       </nav>
 
       <button

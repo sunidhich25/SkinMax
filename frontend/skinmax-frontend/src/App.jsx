@@ -3,9 +3,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LandingPage from "./pages/landingPage";
 import HomePage from "./pages/homePage";
 import Login from "./pages/login";
-
 import ScanPage from "./pages/ScanPage";
 import AnalysisPage from "./pages/AnalysisPage";
+import DermatologistsPage from "./pages/DermatologistPage";
+
 
 function App() {
   return (
@@ -38,13 +39,8 @@ function App() {
         />
 
         <Route
-          path="/weather"
-          element={<h1>Weather-Based Care</h1>}
-        />
-
-        <Route
           path="/dermatologists"
-          element={<h1>Find Dermatologists</h1>}
+          element={<DermatologistsPage />}
         />
 
       </Routes>
