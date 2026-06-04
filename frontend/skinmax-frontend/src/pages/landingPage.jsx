@@ -33,7 +33,7 @@ export default function LandingPage() {
 
         <button
           className="hero-btn"
-          onClick={() => navigate("/analysis")}
+          onClick={() => navigate("/home")}
         >
           ANALYZE TODAY
         </button>
