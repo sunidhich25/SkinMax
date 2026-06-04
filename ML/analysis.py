@@ -1,4 +1,5 @@
 import sys, os
+import json
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(BASE_DIR)
@@ -10,16 +11,8 @@ from pipeline.face_shape import predict as predict_face_shape
 from pipeline.acne_detector import load_model as load_acne_model, detect_acne
 
 from completeec import detect_eye_color
-
-try:
-    from model import detect_hair_texture
-except Exception:
-    detect_hair_texture = lambda x: {"hair_texture": "N/A"}
-
-try:
-    from darkcircle import dark_circles
-except Exception:
-    dark_circles = lambda x: {"severity": "N/A"}
+from model import detect_hair_texture
+from darkcircle import dark_circles
 
 def analyze_face(image_path: str) -> dict:
     """
@@ -76,4 +69,4 @@ def analyze_face(image_path: str) -> dict:
 if __name__ == "__main__":
     test_image = os.path.join(BASE_DIR, "tests/images/sample.jpg")
     result = analyze_face(test_image)
-    print(result)
+    print(json.dumps(result, indent=2))
