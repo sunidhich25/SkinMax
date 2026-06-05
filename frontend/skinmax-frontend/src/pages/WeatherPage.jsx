@@ -78,6 +78,12 @@ export default function WeatherPage() {
   const condition =
     weather.current.condition.text;
 
+  const feelsLike =
+    weather.current.feelslike_c;
+
+  const wind =
+    weather.current.wind_kph;
+
   const morningRoutine = [];
   const afternoonRoutine = [];
   const nightRoutine = [];
@@ -144,20 +150,15 @@ export default function WeatherPage() {
     );
   }
 
-  const skinScore = Math.max(
-    60,
-    100 -
-      Math.round(uv * 2) -
-      Math.round(temp / 5)
-  );
-
   return (
     <div className="layout">
       <Sidebar />
 
       <main className="weather-content">
+
         <div className="weather-header">
           <h1>Weather-Based Care</h1>
+
           <p>
             Personalized skincare
             recommendations based on
@@ -166,15 +167,26 @@ export default function WeatherPage() {
         </div>
 
         <div className="weather-card">
+
           <div>
             <h2>
-            📍 {weather.location.name},{" "}
-            {weather.location.region}
+              📍 {weather.location.name},{" "}
+              {weather.location.region}
             </h2>
+
             <p>{condition}</p>
+
+            <p>
+              Feels Like: {feelsLike}°C
+            </p>
+
+            <p>
+              Wind: {wind} km/h
+            </p>
           </div>
 
           <div className="weather-stats">
+
             <div>
               <span>{temp}°C</span>
               <p>Temperature</p>
@@ -189,12 +201,18 @@ export default function WeatherPage() {
               <span>{uv}</span>
               <p>UV Index</p>
             </div>
+
           </div>
+
         </div>
 
         <div className="weather-grid">
+
           <div className="info-card">
-            <h3>Skin Risk Analysis</h3>
+
+            <h3>
+              Skin Risk Analysis
+            </h3>
 
             <p>
               <strong>
@@ -222,28 +240,19 @@ export default function WeatherPage() {
                 ? "High"
                 : "Moderate"}
             </p>
+
           </div>
 
-          <div className="score-card">
-            <h3>Skin Score</h3>
-
-            <div className="score-number">
-              {skinScore}
-            </div>
-
-            <p>
-              Based on current
-              environmental conditions.
-            </p>
-          </div>
         </div>
 
         <div className="routine-card">
+
           <h2>
             Today's Personalized Care
           </h2>
 
           <div className="routine-grid">
+
             <div>
               <h3>🌅 Morning</h3>
 
@@ -294,8 +303,11 @@ export default function WeatherPage() {
                 )}
               </ul>
             </div>
+
           </div>
+
         </div>
+
       </main>
     </div>
   );

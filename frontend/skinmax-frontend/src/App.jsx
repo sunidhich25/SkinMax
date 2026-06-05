@@ -9,6 +9,7 @@ import DermatologistsPage from "./pages/DermatologistPage";
 import WeatherPage from "./pages/WeatherPage";
 import RoutinePage from "./pages/RoutinePage";
 import ProgressPage from "./pages/ProgressPage";
+import ChatPage from "./pages/ChatPage";
 
 
 function App() {
@@ -58,6 +59,10 @@ function App() {
         <Route
           path="/progress"
           element={<ProgressPage />}
+        />
+        <Route
+          path="/chat"
+          element={<ChatPage />}
         />
 
       </Routes>

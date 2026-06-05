@@ -9,13 +9,11 @@ export default function UploadCard({
 
     if (!file) return;
 
-    const reader = new FileReader();
-
-    reader.onloadend = () => {
-      setImage(reader.result);
-    };
-
-    reader.readAsDataURL(file);
+    setImage({
+      file,
+      preview:
+        URL.createObjectURL(file),
+    });
   };
 
   return (
@@ -27,8 +25,9 @@ export default function UploadCard({
       <h3>Upload Image</h3>
 
       <p>
-        Drag and drop your high-resolution
-        skin profile image.
+        Drag and drop your
+        high-resolution skin profile
+        image.
       </p>
 
       <div className="file-types">

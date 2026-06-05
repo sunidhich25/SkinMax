@@ -19,3 +19,6 @@ class Scan(db.Model):
     lip_color = db.Column(db.String)    
     health_score = db.Column(db.Float)
     advice_json = db.Column(db.Text)
+    dark_circles = db.Column(db.String)
+    skin_hex = db.Column(db.String)
+    lip_hex = db.Column(db.String)

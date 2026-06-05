@@ -65,9 +65,9 @@ export default function Sidebar() {
           Routines
         </NavLink>
 
-        <a href="#">
-          AI Chat
-        </a>
+        <NavLink to="/chat">
+          AI Assistant
+        </NavLink>
 
       </nav>
 

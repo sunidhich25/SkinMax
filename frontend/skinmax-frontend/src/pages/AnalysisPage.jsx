@@ -3,14 +3,24 @@ import Sidebar from "../components/Sidebar/Sidebar";
 import OverviewCard from "../components/OverviewCard/OverviewCard";
 import SkinProfileCard from "../components/SkinProfileCard/SkinProfileCard";
 import AcneAnalysisCard from "../components/AcneAnalysisCard/AcneAnalysisCard";
-import HealthScoreCard from "../components/HealthScoreCard/HealthScoreCard";
 import RoutineCard from "../components/RoutineCard/RoutineCard";
+import LifestyleAdviceCard from "../components/LifestyleAdviceCard/LifestyleAdviceCard";
 
 import "../styles/analysis.css";
 
 export default function AnalysisPage() {
   const uploadedImage =
     localStorage.getItem("uploadedImage");
+
+  const analysisData = JSON.parse(
+    localStorage.getItem("analysisResults")
+  );
+
+  const results =
+    analysisData?.results || {};
+
+  const advice =
+    results?.advice || {};
 
   return (
     <div className="layout">
@@ -28,15 +38,27 @@ export default function AnalysisPage() {
             </p>
           </header>
 
-          <OverviewCard image={uploadedImage} />
+          <OverviewCard
+            image={uploadedImage}
+            results={results}
+          />
 
-          <SkinProfileCard image={uploadedImage} />
+          <SkinProfileCard
+            results={results}
+          />
 
-          <AcneAnalysisCard />
+          <AcneAnalysisCard
+            results={results}
+          />
 
-          <HealthScoreCard />
-
-          <RoutineCard />
+          <RoutineCard
+            advice={advice}
+          />
+          <LifestyleAdviceCard
+            advice={
+              results?.advice?.lifestyle || []
+            }
+          />
 
         </div>
       </main>
