@@ -1,4 +1,4 @@
-import app
+
 from app.extensions import db
 from datetime import datetime
 class User(db.Model):
@@ -7,7 +7,7 @@ class User(db.Model):
     created_at=db.Column(db.DateTime, default=datetime.utcnow)
 class Scan(db.Model):
     id=db.Column(db.Integer,autoincrement=True,primary_key=True)
-    user_id=id.Column(db.String,db.ForeignKey('user.id'),nullable=False)
+    user_id=db.Column(db.String,db.ForeignKey('user.id'),nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     skin_tone = db.Column(db.String)
     undertone = db.Column(db.String)
