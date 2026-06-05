@@ -1,6 +1,14 @@
 import "./RoutineCard.css";
 
-export default function RoutineCard() {
+export default function RoutineCard({
+  advice = {},
+}) {
+  const morning =
+    advice?.routine_am || [];
+
+  const evening =
+    advice?.routine_pm || [];
+
   return (
     <div className="routine-card">
 
@@ -13,39 +21,51 @@ export default function RoutineCard() {
         <div className="routine-column">
           <h3>☀️ Morning Ritual</h3>
 
-          <div className="routine-item">
-            <strong>Gentle Foaming Cleanser</strong>
-            <p>Removes impurities without stripping moisture.</p>
-          </div>
+          {morning.length === 0 ? (
+            <p>
+              No morning routine available.
+            </p>
+          ) : (
+            morning.map(
+              (item, index) => (
+                <div
+                  key={index}
+                  className="routine-item"
+                >
+                  <strong>
+                    Step {index + 1}
+                  </strong>
 
-          <div className="routine-item">
-            <strong>Niacinamide Serum</strong>
-            <p>Targets redness, oiliness and enlarged pores.</p>
-          </div>
-
-          <div className="routine-item">
-            <strong>Broad-Spectrum SPF 50</strong>
-            <p>Essential daily protection against UV damage.</p>
-          </div>
+                  <p>{item}</p>
+                </div>
+              )
+            )
+          )}
         </div>
 
         <div className="routine-column">
           <h3>🌙 Evening Ritual</h3>
 
-          <div className="routine-item">
-            <strong>Salicylic Acid Wash</strong>
-            <p>Deeply cleans pores and reduces acne buildup.</p>
-          </div>
+          {evening.length === 0 ? (
+            <p>
+              No evening routine available.
+            </p>
+          ) : (
+            evening.map(
+              (item, index) => (
+                <div
+                  key={index}
+                  className="routine-item"
+                >
+                  <strong>
+                    Step {index + 1}
+                  </strong>
 
-          <div className="routine-item">
-            <strong>Retinol Treatment</strong>
-            <p>Supports cell turnover and improves texture.</p>
-          </div>
-
-          <div className="routine-item">
-            <strong>Ceramide Night Cream</strong>
-            <p>Repairs skin barrier while you sleep.</p>
-          </div>
+                  <p>{item}</p>
+                </div>
+              )
+            )
+          )}
         </div>
 
       </div>

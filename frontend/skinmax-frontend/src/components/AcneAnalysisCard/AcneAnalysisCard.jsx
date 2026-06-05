@@ -1,54 +1,60 @@
 import "./AcneAnalysisCard.css";
 
-const zones = [
-  {
-    zone: "Forehead",
-    severity: "Moderate Acne",
-    action: "Manage",
-    color: "yellow",
-  },
+export default function AcneAnalysisCard({
+  results = {},
+}) {
+  const severity =
+    results.acne_severity || "N/A";
 
-  {
-    zone: "Cheeks",
-    severity: "Mild Acne",
-    action: "Treat",
-    color: "red",
-  },
+  const count =
+    results.acne_count ?? "N/A";
 
-  {
-    zone: "Nose",
-    severity: "Blackheads",
-    action: "Exfoliate",
-    color: "blue",
-  },
-
-  {
-    zone: "Chin",
-    severity: "Healthy",
-    action: "Optimal",
-    color: "green",
-  },
-];
-
-export default function AcneAnalysisCard() {
   return (
     <div className="acne-card">
-      <h4 className="section-title">TARGET ZONES</h4>
+
+      <h4 className="section-title">
+        ACNE ANALYSIS
+      </h4>
 
       <div className="zones-grid">
-        {zones.map((zone) => (
-          <div
-            key={zone.zone}
-            className={`zone-card ${zone.color}`}
-          >
-            <h3>{zone.zone}</h3>
 
-            <p>{zone.severity}</p>
+        <div className="zone-card red">
+          <h3>Severity</h3>
 
-            <button>{zone.action}</button>
-          </div>
-        ))}
+          <p>{severity}</p>
+
+          <button>
+            Analysis
+          </button>
+        </div>
+
+        <div className="zone-card blue">
+          <h3>Detected Spots</h3>
+
+          <p>{count}</p>
+
+          <button>
+            Review
+          </button>
+        </div>
+
       </div>
+
+      {count === 0 && (
+        <div
+          style={{
+            marginTop: "20px",
+            padding: "16px",
+            background: "#f4fdf6",
+            borderRadius: "12px",
+            color: "#0f7a34",
+            fontWeight: "600",
+          }}
+        >
+          ✓ No active acne detected
+        </div>
+      )}
+
     </div>
   );
 }

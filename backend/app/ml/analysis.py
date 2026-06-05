@@ -10,9 +10,9 @@ from pipeline.lip_color import analyze_lip
 from pipeline.face_shape import predict as predict_face_shape
 from pipeline.acne_detector import load_model as load_acne_model, detect_acne
 
-from completeec import detect_eye_color
-from model import detect_hair_texture
-from darkcircle import dark_circles
+from .completeec import detect_eye_color
+from .model import detect_hair_texture
+from .darkcircle import dark_circles
 
 def analyze_face(image_path: str) -> dict:
     """

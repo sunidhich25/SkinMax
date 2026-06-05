@@ -1,8 +1,11 @@
 import "./SkinProfileCard.css";
 
-export default function SkinProfileCard() {
+export default function SkinProfileCard({
+  results = {},
+}) {
   return (
     <div className="skin-profile-card">
+
       <h4 className="section-title">
         SKIN PROFILE
       </h4>
@@ -10,23 +13,45 @@ export default function SkinProfileCard() {
       <div className="profile-grid">
 
         <div className="profile-item">
-          <span>Skin Type</span>
-          <strong>Oily</strong>
+          <span>Skin Tone</span>
+          <strong>
+            {results.skin_tone || "N/A"}
+          </strong>
         </div>
 
         <div className="profile-item">
-          <span>Acne Severity</span>
-          <strong>Moderate</strong>
+          <span>Undertone</span>
+          <strong>
+            {results.undertone || "N/A"}
+          </strong>
         </div>
 
         <div className="profile-item">
-          <span>Hydration</span>
-          <strong>Low</strong>
+          <span>Face Shape</span>
+          <strong>
+            {results.face_shape || "N/A"}
+          </strong>
         </div>
 
         <div className="profile-item">
-          <span>Sensitivity</span>
-          <strong>Medium</strong>
+          <span>Eye Color</span>
+          <strong>
+            {results.eye_color || "N/A"}
+          </strong>
+        </div>
+
+        <div className="profile-item">
+          <span>Hair Type</span>
+          <strong>
+            {results.hair_type || "N/A"}
+          </strong>
+        </div>
+
+        <div className="profile-item">
+          <span>Dark Circles</span>
+          <strong>
+            {results.dark_circles || "N/A"}
+          </strong>
         </div>
 
       </div>

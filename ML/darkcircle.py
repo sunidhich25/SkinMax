@@ -18,7 +18,7 @@ def dark_circles(image_path):
     rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 
 
-    # DETECT FACE
+    # FACE
 
 
     with mp_face_mesh.FaceMesh(
@@ -35,8 +35,8 @@ def dark_circles(image_path):
         landmarks = results.multi_face_landmarks[0].landmark
 
 
-    # CONVERT LANDMARKS TO DICT
-    # (needed by skintone.py)
+    #  LANDMARKS TO DICT
+    
 
 
     h, w = image.shape[:2]
@@ -124,9 +124,7 @@ def dark_circles(image_path):
 
 
 
-    # -----------------------------
-    # LAB CALCULATION
-    # -----------------------------
+    
 
     def mean_lab(region, mask):
 
@@ -154,9 +152,7 @@ def dark_circles(image_path):
     eye_a = (left_a + right_a) / 2
     eye_b = (left_b + right_b) / 2
 
-    # -----------------------------
-    # DARK CIRCLE SCORE
-    # -----------------------------
+  
 
     lightness_drop = skin_L - eye_L
 
@@ -171,9 +167,6 @@ def dark_circles(image_path):
         0.3 * color_distance
     )
 
-    # -----------------------------
-    # CLASSIFICATION
-    # -----------------------------
 
     if severity_score < 4:
         severity = "None"

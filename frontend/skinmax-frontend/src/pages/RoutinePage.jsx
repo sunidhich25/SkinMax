@@ -1,109 +1,199 @@
+import { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar/Sidebar";
+import { auth } from "../Firebase";
+
 import "../styles/routinePage.css";
 
 export default function RoutinePage() {
-  const morningRoutine = [
-    "Gentle Cleanser",
-    "Vitamin C Serum",
-    "Lightweight Moisturizer",
-    "SPF 50+ Sunscreen",
-  ];
+  const [routine, setRoutine] =
+    useState(null);
 
-  const nightRoutine = [
-    "Gentle Cleanser",
-    "Niacinamide Serum",
-    "Moisturizer",
-    "Lip Balm",
-  ];
+  const [loading, setLoading] =
+    useState(true);
 
-  const weeklyTips = [
-    "Exfoliate 1–2 times per week",
-    "Change pillow covers regularly",
-    "Stay hydrated",
-    "Avoid touching your face frequently",
-  ];
+  useEffect(() => {
+    fetchLatestRoutine();
+  }, []);
+
+  const fetchLatestRoutine =
+    async () => {
+      try {
+        const user =
+          auth.currentUser;
+
+        if (!user) return;
+
+        const token =
+          await user.getIdToken();
+
+        const response =
+          await fetch(
+            "http://127.0.0.1:5000/api/history",
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+
+        const data =
+          await response.json();
+
+        if (
+          data.scans &&
+          data.scans.length > 0
+        ) {
+          setRoutine(
+            data.scans[0].advice
+          );
+        }
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+  const morning =
+    routine?.routine_am || [];
+
+  const evening =
+    routine?.routine_pm || [];
+
+  const lifestyle =
+    routine?.lifestyle || [];
 
   return (
     <div className="layout">
       <Sidebar />
 
       <main className="routine-content">
+
         <div className="routine-header">
-          <h1>Personalized Skincare Routine</h1>
+          <h1>
+            Personalized Routine
+          </h1>
 
           <p>
-            Tailored recommendations to
-            maintain healthy skin.
+            Generated from your
+            latest skin analysis.
           </p>
         </div>
 
-        <div className="routine-grid">
-          <div className="routine-card">
-            <h2>🌅 Morning Routine</h2>
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <>
+            <div className="routine-grid">
 
-            <ul>
-              {morningRoutine.map(
-                (step, index) => (
-                  <li key={index}>
-                    {step}
-                  </li>
+              <div className="routine-card">
+                <h2>
+                  ☀ Morning Routine
+                </h2>
+
+                {morning.length ===
+                0 ? (
+                  <p>
+                    No morning
+                    recommendations.
+                  </p>
+                ) : (
+                  morning.map(
+                    (
+                      item,
+                      index
+                    ) => (
+                      <div
+                        key={
+                          index
+                        }
+                        className="routine-step"
+                      >
+                        <strong>
+                          Step{" "}
+                          {index +
+                            1}
+                        </strong>
+
+                        <p>
+                          {item}
+                        </p>
+                      </div>
+                    )
+                  )
+                )}
+              </div>
+
+              <div className="routine-card">
+                <h2>
+                  🌙 Evening Routine
+                </h2>
+
+                {evening.length ===
+                0 ? (
+                  <p>
+                    No evening
+                    recommendations.
+                  </p>
+                ) : (
+                  evening.map(
+                    (
+                      item,
+                      index
+                    ) => (
+                      <div
+                        key={
+                          index
+                        }
+                        className="routine-step"
+                      >
+                        <strong>
+                          Step{" "}
+                          {index +
+                            1}
+                        </strong>
+
+                        <p>
+                          {item}
+                        </p>
+                      </div>
+                    )
+                  )
+                )}
+              </div>
+
+            </div>
+
+            <div className="tips-card">
+              <h2>
+                🧠 Lifestyle Advice
+              </h2>
+
+              {lifestyle.length ===
+              0 ? (
+                <p>
+                  No lifestyle
+                  advice available.
+                </p>
+              ) : (
+                lifestyle.map(
+                  (
+                    item,
+                    index
+                  ) => (
+                    <div
+                      key={index}
+                      className="tip-item"
+                    >
+                      {item}
+                    </div>
+                  )
                 )
               )}
-            </ul>
-          </div>
-
-          <div className="routine-card">
-            <h2>🌙 Night Routine</h2>
-
-            <ul>
-              {nightRoutine.map(
-                (step, index) => (
-                  <li key={index}>
-                    {step}
-                  </li>
-                )
-              )}
-            </ul>
-          </div>
-        </div>
-
-        <div className="product-card">
-          <h2>
-            Recommended Products
-          </h2>
-
-          <div className="product-grid">
-            <div className="product-item">
-              Cleanser
             </div>
+          </>
+        )}
 
-            <div className="product-item">
-              Moisturizer
-            </div>
-
-            <div className="product-item">
-              Sunscreen
-            </div>
-
-            <div className="product-item">
-              Serum
-            </div>
-          </div>
-        </div>
-
-        <div className="tips-card">
-          <h2>📅 Weekly Tips</h2>
-
-          <ul>
-            {weeklyTips.map(
-              (tip, index) => (
-                <li key={index}>
-                  {tip}
-                </li>
-              )
-            )}
-          </ul>
-        </div>
       </main>
     </div>
   );

@@ -1,51 +1,13 @@
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, useGLTF, Center } from "@react-three/drei";
-import { useMemo } from "react";
-import * as THREE from "three";
-import { createHeatmapTexture } from "./HeatmapTexture";
+import {
+  OrbitControls,
+  useGLTF,
+  Center,
+  Html,
+} from "@react-three/drei";
 
 function FaceModel() {
   const { scene } = useGLTF("/face.glb");
-
-  const heatmapTexture = useMemo(() => {
-    return createHeatmapTexture([
-      {
-        u: 0.25,
-        v: 0.55,
-        radius: 100,
-      },
-      {
-        u: 0.50,
-        v: 0.55,
-        radius: 45,
-      },
-      {
-        u: 0.50,
-        v: 0.85,
-        radius: 150,
-      },
-      {
-        u: 0.75,
-        v: 0.55,
-        radius: 120,
-      },
-    ]);
-  }, []);
-
-  scene.traverse((child) => {
-    if (child.isMesh) {
-      child.material = new THREE.MeshStandardMaterial({
-        color: "#444444",
-
-        emissive: "#ff3300",
-        emissiveMap: heatmapTexture,
-        emissiveIntensity: 3,
-
-        roughness: 0.9,
-        metalness: 0,
-      });
-    }
-  });
 
   return (
     <Center>
@@ -57,7 +19,50 @@ function FaceModel() {
   );
 }
 
-export default function FaceViewer() {
+function AcneMarker({
+  position,
+}) {
+  return (
+    <Html position={position}>
+      <div
+        style={{
+          width: "16px",
+          height: "16px",
+          borderRadius: "50%",
+          background: "red",
+          boxShadow:
+            "0 0 20px red",
+          transform:
+            "translate(-50%, -50%)",
+        }}
+      />
+    </Html>
+  );
+}
+
+export default function FaceViewer({
+  detections = [],
+}) {
+  const markers = detections.map(
+    (d, index) => {
+      const x =
+        (d?.bbox?.center_x - 0.5) *
+        2.5;
+
+      const y =
+        (0.5 -
+          d?.bbox?.center_y) *
+        3;
+
+      return (
+        <AcneMarker
+          key={index}
+          position={[x, y, 1]}
+        />
+      );
+    }
+  );
+
   return (
     <Canvas
       camera={{
@@ -84,10 +89,12 @@ export default function FaceViewer() {
 
       <FaceModel />
 
+      {markers}
+
       <OrbitControls
         enablePan={false}
         enableZoom={false}
-        enableRotate={true}
+        enableRotate={false}
       />
     </Canvas>
   );
