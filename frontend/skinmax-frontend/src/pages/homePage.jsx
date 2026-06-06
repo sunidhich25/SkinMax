@@ -2,6 +2,13 @@ import "../styles/homePage.css";
 import modelImage from "../assets/model.jpg";
 import { useNavigate } from "react-router-dom";
 import { logoutUser } from "../Firebase";
+import { auth } from "../Firebase";
+window.getToken = async () => {
+  console.log(
+    await auth.currentUser.getIdToken()
+  );
+};
+
 
 export default function HomePage() {
   const navigate = useNavigate();
